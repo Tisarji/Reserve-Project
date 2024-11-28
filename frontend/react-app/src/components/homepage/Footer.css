@@ -1,0 +1,93 @@
+.ft_footer-container {
+	background-color: #fff;
+	padding: 20px 0;
+	width: 100%;
+	border-top: 1px solid #ddd;
+	overflow: hidden;
+}
+
+.ft_footer-content {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20px;
+	color: #333;
+	font-size: 14px;
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.ft_contact-section {
+	max-width: 300px;
+	margin: 0;
+}
+
+.ft_mut-logo {
+	width: 100px;
+	margin-bottom: 15px;
+}
+
+.ft_social-links {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.ft_social-links a {
+	color: #333;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
+}
+
+.ft_social-links a:hover {
+	text-decoration: underline;
+}
+
+.ft_contact-section p {
+	margin: 0;
+}
+
+.ft_link-sections {
+	display: flex;
+	gap: 50px;
+	margin: 0;
+	margin-right: 40px;
+}
+
+.ft_link-group {
+	margin-left: 0;
+}
+
+.ft_link-group h4 {
+	font-weight: bold;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+.ft_link-group ul {
+	list-style: none;
+	padding: 0;
+}
+
+.ft_link-group ul li {
+	margin-bottom: 5px;
+}
+
+.ft_link-group ul li a {
+	color: #333;
+	text-decoration: none;
+}
+
+.ft_link-group ul li a:hover {
+	text-decoration: underline;
+}
+
+.ft_footer-bottom {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 12px;
+	color: #888;
+}
