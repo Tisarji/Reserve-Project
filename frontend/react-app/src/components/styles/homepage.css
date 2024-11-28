@@ -1,0 +1,46 @@
+body {
+	font-family: Arial, sans-serif;
+}
+
+.header {
+	background-color: #333;
+	color: white;
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.header .logo {
+	font-size: 24px;
+}
+
+
+.search-form {
+	display: flex;
+	gap: 10px;
+	padding: 20px;
+	background-color: #f8f8f8;
+}
+
+.building-grid,
+.room-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+	padding: 20px;
+}
+
+.building-card,
+.room-card {
+	background-color: white;
+	border: 1px solid #ccc;
+	padding: 10px;
+	text-align: center;
+}
+
+.building-card img,
+.room-card img {
+	max-width: 100%;
+	height: 150px;
+	object-fit: cover;
+}

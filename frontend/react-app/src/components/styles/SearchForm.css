@@ -1,0 +1,50 @@
+.room-search-page {
+	background-image: url('../../assets/homepage/background.png');
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-card {
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+	width: 80%;
+	max-width: 600px;
+	text-align: center;
+}
+
+.search-form input {
+	margin: 10px 0;
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.search-options {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.search-options input {
+	width: 48%; /* Adjust as needed */
+}
+
+button {
+	padding: 10px 20px;
+	background-color: #003366;
+	color: white;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+button:hover {
+	background-color: #002244;
+}
