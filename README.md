@@ -19,5 +19,5 @@ npm start
 1. **Run the server:**
 
 ```bash
-go run main.go
+go run srcs/main.go
 ```
