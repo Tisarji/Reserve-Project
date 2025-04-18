@@ -12,14 +12,18 @@ import (
 	"API/srcs/management"
 	"API/srcs/master"
 	"API/srcs/profile"
-	"API/srcs/verify"
 	"API/srcs/reserve"
+	"API/srcs/verify"
+
+	"API/srcs/database"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	database.InitDatabase()
+
 	r := gin.Default()
 	r.Use(cors.Default())
 
@@ -67,7 +71,7 @@ func main() {
 	r.DELETE("/api/deluser", management.DelUser)
 
 	r.GET("/api/bookinghistory", history.GetBookingHistory) //
-	r.PUT("api/cancelbooking", history.CancelStatus) //
+	r.PUT("api/cancelbooking", history.CancelStatus)        //
 
 	r.GET("/api/overview1", report.Overview1)
 	r.GET("/api/overview2", report.Overview2)

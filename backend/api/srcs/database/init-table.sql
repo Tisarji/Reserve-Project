@@ -1,0 +1,142 @@
+DROP TABLE IF EXISTS ACCESS_LIST;
+DROP TABLE IF EXISTS BOOKING;
+DROP TABLE IF EXISTS BOOKING_LIST;
+DROP TABLE IF EXISTS BOOKING_STATUS;
+DROP TABLE IF EXISTS BUILDING;
+DROP TABLE IF EXISTS CANCEL_BOOKING;
+DROP TABLE IF EXISTS DENY_BOOKING;
+DROP TABLE IF EXISTS DEPARTMENT;
+DROP TABLE IF EXISTS EMPLOYEE;
+DROP TABLE IF EXISTS EMPLOYEE_STATUS;
+DROP TABLE IF EXISTS FLOOR;
+DROP TABLE IF EXISTS LOCK_LIST;
+DROP TABLE IF EXISTS POSITION;
+DROP TABLE IF EXISTS ROOM;
+DROP TABLE IF EXISTS ROOM_STATUS;
+DROP TABLE IF EXISTS UNLOCK_LIST;
+
+CREATE TABLE department (
+   DNumber  INTEGER PRIMARY KEY,
+   DName  TEXT
+);
+
+CREATE TABLE position (
+   PNumber  INTEGER PRIMARY KEY,
+   PName  TEXT,
+   AccessNo  TEXT
+);
+
+CREATE TABLE room_status (
+   SNumber  INTEGER PRIMARY KEY,
+   SName  TEXT
+);
+
+CREATE TABLE employee_status (
+   SNumber  INTEGER PRIMARY KEY,
+   SName  TEXT
+);
+
+CREATE TABLE booking_status (
+   SNumber  INTEGER PRIMARY KEY,
+   SName  TEXT
+);
+
+CREATE TABLE building (
+   BNumber  INTEGER PRIMARY KEY,
+   BName  TEXT
+);
+
+CREATE TABLE floor (
+   FlNumber  INTEGER PRIMARY KEY,
+   FlName  TEXT,
+   BNo  INTEGER,
+   FOREIGN KEY (BNo) REFERENCES building (BNumber)
+);
+
+CREATE TABLE room (
+   RNumber  INTEGER PRIMARY KEY,
+   RName  TEXT,
+   Capacity INTEGER,
+   VIP  INTEGER,
+   FlNo INTEGER,
+   FOREIGN KEY (FlNo) REFERENCES floor (FlNumber)
+);
+
+CREATE TABLE employee (
+   ENumber  INTEGER PRIMARY KEY,
+   FName  TEXT,
+   LName  TEXT,
+   score  INTEGER,
+   Email  TEXT,
+   username  TEXT,
+   password  TEXT,
+   DNo  INTEGER,
+   PNo  INTEGER,
+   SNo  INTEGER,
+   FOREIGN KEY (DNo) REFERENCES department (DNumber),
+   FOREIGN KEY (PNo) REFERENCES position (PNumber),
+   FOREIGN KEY (SNo) REFERENCES employee_status (SNumber)
+);
+
+CREATE TABLE booking (
+   BKNumber  INTEGER PRIMARY KEY,
+   BKDate   TEXT,
+   ENo INTEGER,
+   FOREIGN KEY (ENo) REFERENCES employee (ENumber)
+);
+
+CREATE TABLE booking_list (
+   BKLNumber  INTEGER PRIMARY KEY,
+   BKLNo   INTEGER,
+   RNo  INTEGER,
+   Start_Date   TEXT,
+   Start_Time   TEXT,
+   End_Time     TEXT,
+   details  TEXT,
+   QR       TEXT,
+   SNo      INTEGER,
+   FOREIGN KEY (BKLNo) REFERENCES booking (BKNumber),
+   FOREIGN KEY (RNo) REFERENCES room (RNumber),
+   FOREIGN KEY (SNo) REFERENCES booking_status (SNumber)
+);
+
+CREATE TABLE access_list (
+   ACNumber  INTEGER PRIMARY KEY,
+   BKLNo   INTEGER,
+   BKNo  INTEGER,
+   Access_Time   TEXT,
+   FOREIGN KEY (BKLNo) REFERENCES booking_list (BKLNumber),
+   FOREIGN KEY (BKNo) REFERENCES booking (BKNumber)
+);
+
+CREATE TABLE deny_booking (
+   DNNumber  INTEGER PRIMARY KEY,
+   BKLNo   INTEGER,
+   BKNo  INTEGER,
+   details   TEXT,
+   FOREIGN KEY (BKLNo) REFERENCES booking_list (BKLNumber),
+   FOREIGN KEY (BKNo) REFERENCES booking (BKNumber)
+);
+
+CREATE TABLE cancel_booking (
+   CCNumber  INTEGER PRIMARY KEY,
+   BKLNo   INTEGER,
+   BKNo  INTEGER,
+   details   TEXT,
+   FOREIGN KEY (BKLNo) REFERENCES booking_list (BKLNumber),
+   FOREIGN KEY (BKNo) REFERENCES booking (BKNumber)
+);
+
+CREATE TABLE lock_list (
+   LKNo  INTEGER PRIMARY KEY,
+   ENo   INTEGER,
+   LKDate  TEXT,
+   FOREIGN KEY (ENo) REFERENCES employee (ENumber)
+);
+
+CREATE TABLE unlock_list (
+   ULKNo  INTEGER PRIMARY KEY,
+   ENo   INTEGER,
+   LKDate  TEXT,
+   FOREIGN KEY (ENo) REFERENCES employee (ENumber)
+);
