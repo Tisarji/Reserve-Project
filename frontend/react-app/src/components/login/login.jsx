@@ -48,40 +48,47 @@ function Login() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const buttonName = e.nativeEvent.submitter.name;
-	
 		if (buttonName === "signin") {
-			if (inputUsername.trim() === "" || inputPassword.trim() === "") {
-				noinput()
+		  if (inputUsername.trim() === "" || inputPassword.trim() === "") {
+			noinput();
+			return;
+		  }
+	  
+		  fetch("http://localhost:5000/api/auth/login",	{
+			method: "POST",
+			headers: {
+			  "Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+			  username: inputUsername,
+			  password: inputPassword,
+			}),
+		  })
+			.then(async (response) => {
+			  if (!response.ok) {
+				const errorData = await response.json();
+				if (errorData.error === "Account Locked") {
+				  ErrScoremore();
+				} else {
+				  Err();
+				}
+				setInputUsername("");
+				setInputPassword("");
 				return;
-			}
-
-			// ส่งข้อมูลไปที่ API
-			fetch("http://localhost:8080/api/login", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					username: inputUsername,
-					password: inputPassword,
-				}),
+			  }
+	  
+			  login();
 			})
-				.then((response) => {
-					if (!response.ok) {
-						throw new Error("Invalid username or password");
-					}
-					return response.json();
-				})
-				.then((data) => {
-					login()
-				})
-				.catch((error) => {
-					Err()
-					setInputUsername("")
-					setInputPassword("")
-				});
+			.catch((error) => {
+			  Swal.fire({
+				title: "ข้อผิดพลาดจากเซิร์ฟเวอร์",
+				text: "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้",
+				icon: "error",
+			  });
+			});
 		}
-	};
+	  };
+	  
 
 	return (
 		<div className="bglogin">
