@@ -1,40 +1,31 @@
 package login
 
 import (
-	"database/sql"
 	"net/http"
-	"API/srcs/connectdb"
+	"API/srcs/database"
 	"API/srcs/model"
 
 	"github.com/gin-gonic/gin"
-	_ "github.com/sijms/go-ora/v2"
 )
-
 
 func Login(c *gin.Context) {
 	if err := c.BindJSON(&model.LoginRequestInstance); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
 		return
 	}
-
-	db, err := connectdb.ConnectDB()
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to connect to database"})
-		return
-	}
-	defer db.Close()
+	db := database.Connect()
 
 	var dbUsername, dbPassword string
 	var score int
-	err = db.QueryRow("SELECT username, password, score FROM EMPLOYEE WHERE username = :1", model.LoginRequestInstance.Username).Scan(&dbUsername, &dbPassword, &score)
-	if err == sql.ErrNoRows {
+
+	err := db.QueryRow("SELECT username, password, score FROM EMPLOYEE WHERE username = ?", model.LoginRequestInstance.Username).
+		Scan(&dbUsername, &dbPassword, &score)
+
+	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Username or Password is Incorrect"})
 		return
 	}
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Database error"})
-		return
-	}
+
 	if score >= 3 {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Account Locked"})
 		return
@@ -49,21 +40,21 @@ func Login(c *gin.Context) {
 }
 
 func NavbarAuthority(c *gin.Context) {
-	db, err := connectdb.ConnectDB()
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to connect to database"})
-		return
-	}
-	defer db.Close()
+	db := database.Connect()
 
-	var Author string
-	err = db.QueryRow("SELECT ACCESSNO FROM EMPLOYEE, POSITION WHERE PNO = PNUMBER AND USERNAME = :1", model.LoginRequestInstance.Username).Scan(&Author)
-	if err == sql.ErrNoRows {
+	var accessNo string
+	err := db.QueryRow(`
+		SELECT POSITION.ACCESSNO
+		FROM EMPLOYEE
+		JOIN POSITION ON EMPLOYEE.PNO = POSITION.PNUMBER
+		WHERE EMPLOYEE.USERNAME = ?`,
+		model.LoginRequestInstance.Username,
+	).Scan(&accessNo)
+
+	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Something went wrong!"})
 		return
-	} else if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Database error"})
-		return
 	}
-	c.JSON(http.StatusOK, gin.H{"accessno": Author})
+
+	c.JSON(http.StatusOK, gin.H{"accessno": accessNo})
 }

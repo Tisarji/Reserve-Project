@@ -65,8 +65,8 @@ INSERT INTO ROOM (RNUMBER, RNAME, CAPACITY, VIP, FLNO) VALUES
 -- Insert into EMPLOYEE
 -- ----------------------------
 INSERT INTO EMPLOYEE (ENUMBER, FNAME, LNAME, SCORE, EMAIL, USERNAME, PASSWORD, DNO, PNO, SNO) VALUES 
-  (1, 'A', 'A', 0, 'Aa@gmail.com', 'Admin', '1234', 1, 1, 1),
-  (2, 'B', 'B', 0, 'Baka@gmail.com', 'Boom', '4321', 1, 2, 1);
+  (1, 'A', 'A', 0, 'Aa@gmail.com', 'admin', '1234', 1, 1, 1),
+  (2, 'B', 'B', 0, 'Baka@gmail.com', 'boom', '4321', 1, 2, 1);
 
 -- ----------------------------
 -- Insert into BOOKING

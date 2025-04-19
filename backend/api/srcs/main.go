@@ -7,6 +7,7 @@ package main
 import (
 	"API/srcs/history"
 	"API/srcs/report"
+	"os"
 
 	"API/srcs/login"
 	"API/srcs/management"
@@ -22,7 +23,7 @@ import (
 )
 
 func main() {
-	database.InitDatabase()
+	database.InitDB()
 
 	r := gin.Default()
 	r.Use(cors.Default())
@@ -84,4 +85,5 @@ func main() {
 	// r.GET("/api/getbooking", reserve.GetBooking)
 
 	r.Run(":8080")
+	_ = os.Remove("./dev.db")
 }
