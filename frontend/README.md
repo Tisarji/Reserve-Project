@@ -13,5 +13,5 @@ npm run-script build
 
 1. Run Project
 ```
-npm run start
+npm run dev
 ```
