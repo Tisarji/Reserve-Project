@@ -3,7 +3,7 @@
 0. Install npm
 
 ```
-npm install next react react-dom
+npm install
 ```
 
 1. Install script first
