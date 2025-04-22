@@ -56,7 +56,7 @@ const NotificationPanel: React.FC = () => {
 			</button>
 
 			{show && (
-				<div className="absolute right-0 mt-2 w-96 bg-white rounded-2xl shadow-lg z-50 overflow-hidden">
+				<div className="absolute right-0 mt-2 w-96 bg-white rounded-kt2xl shadow-lg z-50 overflow-hidden">
 					<div className="px-4 py-3 border-b font-semibold text-sm text-black border-gray-200">
 						NOTIFICATIONS ({notifications.length})
 					</div>
