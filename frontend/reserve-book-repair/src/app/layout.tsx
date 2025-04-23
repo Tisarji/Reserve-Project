@@ -3,9 +3,8 @@ import './globals.css'
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-	title: 'Kuay bOOm',
-	description: 'Muhahahahaha NextJS',
-	keywords: 'KuayYai',
+	title: "Book Repair Reservation System",
+	description: "Book Repair Reservation System",
 }
 
 const layout = ({ children }) => {
