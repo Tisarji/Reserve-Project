@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Nav from "../navbar/navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faEdit, faTrash, faSearch } from "@fortawesome/free-solid-svg-icons";
 
