@@ -58,10 +58,10 @@ function Navbar() {
 						<Link href="/" className="text-gray-700 hover:text-blue-500">
 							Home
 						</Link>
-						<Link href="/Booking" className="text-gray-700 hover:text-blue-500">
+						<Link href="/booking" className="text-gray-700 hover:text-blue-500">
 							Booking
 						</Link>
-						<Link href="/History" className="text-gray-700 hover:text-blue-500">
+						<Link href="/history" className="text-gray-700 hover:text-blue-500">
 							History
 						</Link>
 
@@ -78,8 +78,8 @@ function Navbar() {
 								{/* Dropdown submenu */}
 								{managedrop && (
 									<ul className="absolute left-0 mt-2 w-25 bg-white shadow-lg rounded-md z-50">
-										<li><Link href="/Room" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Room</Link></li>
-										<li><Link href="/User" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">User</Link></li>
+										<li><Link href="/room" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Room</Link></li>
+										<li><Link href="/user" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">User</Link></li>
 									</ul>
 								)}
 							</li>

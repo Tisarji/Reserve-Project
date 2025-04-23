@@ -9,7 +9,7 @@ import { User } from "lucide-react";
 export default function Home() {
 	return (
 		<>
-			<Navbar />
+			{/*<Navbar />*/}
 			<main className="p-6">
 				{/* <RoomManagement /> */}
         
