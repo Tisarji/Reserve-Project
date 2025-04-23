@@ -12,7 +12,11 @@ export default function Home() {
 			<Navbar />
 			<main className="p-6">
 				{/* <RoomManagement /> */}
+        
 				{/* <UserManagement /> */}
+
+        {/* <History /> */}
+
 			</main>
 		</>
 	);
