@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from "react";
+import "../../style/style.css"
 
 const handleSubmit = (e:any) => {
 	e.preventDefault();
@@ -14,11 +15,11 @@ function Login() {
 	const [inputPassword, setInputPassword] = useState("");
 	return (
 		<div className="bglogin">
-			<div className="rowlogin">
+			<section className="rowlogin">
 				<div className="mutlogo"></div>
 				<div className="login-form">
-				<h1 className="welcome-login">Welcome Back</h1>
-					<form onSubmit={handleSubmit}>
+					<h1 className="welcome-login">Welcome Back</h1>
+					{/* <form onSubmit={handleSubmit}>
 						<label className="text_info-login">Username</label>
 						<input
 							type="text"
@@ -41,9 +42,9 @@ function Login() {
 						<button className="signin-login" type="submit" name="signin">
 							Sign In
 						</button>
-					</form>
+					</form> */}
 				</div>
-			</div>
+			</section>
 		</div>
 	);
 }

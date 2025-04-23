@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+* {
+	box-sizing: border-box;
+}
 /** Navbar */
 
 /** Homepage */
@@ -7,3 +10,49 @@
 /** Notification */
 
 /** Login */
+.bglogin {
+	height:100%;
+	width: 100%;
+	margin: 0px;
+	position: absolute;
+
+	background-image: url("../app/image/BGmut.png");
+	background-color: rgb(155, 155, 155);
+	display: flex;
+	background-size: cover;
+	background-position: center;
+	align-items: center;
+
+	border: 5px solid blue;
+}
+
+.rowlogin::after {
+
+	content: "";
+	display: table;
+	clear: both;
+	border: 5px solid red;
+}
+
+.mutlogo {
+	float: left;
+	height: 50vh;
+	width: 50vw;
+	margin: 0px;
+	position: fixed;
+
+	border: 5px solid green;
+
+	background-image: url("../app/image/logo-full.png");
+	display: flex;
+	background-size: cover;
+	background-position: center;
+}
+
+.login-form {
+	float: left;
+	position: fixed;
+
+	display: flex;
+	border: 5px solid yellow;
+}
