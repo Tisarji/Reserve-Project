@@ -15,11 +15,10 @@ function Login() {
 	const [inputPassword, setInputPassword] = useState("");
 	return (
 		<div className="bglogin">
-			<section className="rowlogin">
+			<div className="rowlogin">
 				<div className="mutlogo"></div>
-				<div className="login-form">
-					<h1 className="welcome-login">Welcome Back</h1>
-					{/* <form onSubmit={handleSubmit}>
+				<div className="login-form">Welcome Back
+					<form onSubmit={handleSubmit}>
 						<label className="text_info-login">Username</label>
 						<input
 							type="text"
@@ -42,9 +41,9 @@ function Login() {
 						<button className="signin-login" type="submit" name="signin">
 							Sign In
 						</button>
-					</form> */}
+					</form>
 				</div>
-			</section>
+			</div>
 		</div>
 	);
 }
