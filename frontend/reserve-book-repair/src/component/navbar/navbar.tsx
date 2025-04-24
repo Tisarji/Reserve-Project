@@ -3,9 +3,8 @@
 import Link from 'next/link'
 import Image from 'next/image';
 import { useState, useEffect, useRef } from "react";
-import logo from '../../app/image/MUT_LOGO_crop.png'
+import logo from '../../app/image/MUT_LOGOBlue_crop.png'
 import NotificationPanel from '../notification/notification';
-import RoomManagement from '../management/room';
 import { Bell, CircleUserRound, LogOut } from 'lucide-react';
 
 
