@@ -1,13 +1,14 @@
+import { ReactNode } from "react";
+import { Metadata } from "next"
 import Nav from "../component/navbar/navbar";
 import './globals.css'
-import { Metadata } from "next"
 
 export const metadata: Metadata = {
 	title: "Book Repair Reservation System",
 	description: "Book Repair Reservation System",
 }
 
-const layout = ({ children }) => {
+const layout = ({ children }: { children: ReactNode }) => {
 	return (
 		<html>
 			<body>

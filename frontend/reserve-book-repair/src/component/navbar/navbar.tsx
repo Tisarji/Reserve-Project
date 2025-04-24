@@ -3,9 +3,8 @@
 import Link from 'next/link'
 import Image from 'next/image';
 import { useState, useEffect, useRef } from "react";
-import logo from '../../app/image/MUT_LOGO_crop.png'
+import logo from '../../app/image/MUT_LOGOBlue_crop.png'
 import NotificationPanel from '../notification/notification';
-import RoomManagement from '../management/room';
 import { Bell, CircleUserRound, LogOut } from 'lucide-react';
 
 
@@ -98,12 +97,12 @@ function Navbar() {
 								{/* Dropdown submenu */}
 								{masterdrop && (
 									<ul className="absolute left-0 mt-2 w-35 bg-white shadow-lg rounded-md z-50">
-										<li><Link href="/Department" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Department</Link></li>
-										<li><Link href="/Position" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Position</Link></li>
-										<li><Link href="/Building" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Building</Link></li>
-										<li><Link href="/EmpStatus" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">EmpStatus</Link></li>
-										<li><Link href="/BookingStatus" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">BookingStatus</Link></li>
-										<li><Link href="/RoomStatus" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">RoomStatus</Link></li>
+										<li><Link href="/department" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Department</Link></li>
+										<li><Link href="/position" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Position</Link></li>
+										<li><Link href="/building" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Building</Link></li>
+										<li><Link href="/empstatus" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">EmpStatus</Link></li>
+										<li><Link href="/bookingstatus" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">BookingStatus</Link></li>
+										<li><Link href="/roomstatus" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">RoomStatus</Link></li>
 									</ul>
 								)}
 							</li>
@@ -118,7 +117,7 @@ function Navbar() {
 						<Link href="/User" className="text-gray-700 hover:text-blue-500">
 							<CircleUserRound className="w-6 h-6 text-blue-500" />
 						</Link>
-						<Link href="/Login" className="text-gray-700 hover:text-blue-500">
+						<Link href="/login" className="text-gray-700 hover:text-blue-500">
 							<LogOut className="w-6 h-6 text-blue-500" />
 						</Link>
 					</div>
