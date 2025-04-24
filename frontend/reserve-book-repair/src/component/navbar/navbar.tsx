@@ -117,7 +117,7 @@ function Navbar() {
 						<Link href="/User" className="text-gray-700 hover:text-blue-500">
 							<CircleUserRound className="w-6 h-6 text-blue-500" />
 						</Link>
-						<Link href="/Login" className="text-gray-700 hover:text-blue-500">
+						<Link href="/login" className="text-gray-700 hover:text-blue-500">
 							<LogOut className="w-6 h-6 text-blue-500" />
 						</Link>
 					</div>

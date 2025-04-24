@@ -3,32 +3,32 @@
 import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import imgroom from "@/app/image/room.png";
-import { Check , X , Clock , Shield , ShoppingBag , ThumbsDown , QrCode , Trash2} from "lucide-react";
+import { Check, X, Clock, Shield, ShoppingBag, ThumbsDown, QrCode, Trash2 } from "lucide-react";
 
 interface HistoryStatusItem {
-	img:StaticImageData
+	img: StaticImageData
 
 	buiding: string;
-      open: string;
-      room: string;
-      class: string;
+	open: string;
+	room: string;
+	class: string;
 
 	time: string;
 	date: string;
 	bookingdetail: string;
 	bookterm: string;
 
-      status: string;
+	status: string;
 }
 
-const columns = ["รูปภาพห้อง","ข้อมูลการจอง","สถานะการจอง"];
+const columns = ["รูปภาพห้อง", "ข้อมูลการจอง", "สถานะการจอง"];
 
 const History: React.FC = () => {
 	const [statuses, setStatuses] = useState<HistoryStatusItem[]>([
 		{
-			img: imgroom ,
+			img: imgroom,
 
-			buiding: "K101" ,
+			buiding: "K101",
 			open: "Monday - Friday",
 			room: "7 - 8 people",
 			class: "Normal",
@@ -42,9 +42,9 @@ const History: React.FC = () => {
 
 		},
 		{
-			img: imgroom ,
+			img: imgroom,
 
-			buiding: "K102" ,
+			buiding: "K102",
 			open: "Monday - Friday",
 			room: "7 - 8 people",
 			class: "Normal",
@@ -58,9 +58,9 @@ const History: React.FC = () => {
 
 		},
 		{
-			img: imgroom ,
+			img: imgroom,
 
-			buiding: "K103" ,
+			buiding: "K103",
 			open: "Monday - Friday",
 			room: "7 - 8 people",
 			class: "Normal",
@@ -118,27 +118,27 @@ const History: React.FC = () => {
 					</thead>
 					<tbody className="bg-white divide-y divide-gray-200">
 						{filteredStatuses.map((status) => (
-							
+
 							<tr
 								className={`hover:bg-gray-100 transition ${mode ? "cursor-pointer" : ""}`}
 								onClick={() => (status)}
 							>
-								
+
 								<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Image src={status.img} alt="Room image" width={200} height={100} className="rounded" /></td>
 								<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
 									<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
 										<div>Buiding : {status.buiding}</div>
-                                                      	<div>open : {status.open}</div>
-                                                      	<div>room : {status.room}</div>
-                                                      	<div>class : {status.class}</div>
+										<div>open : {status.open}</div>
+										<div>room : {status.room}</div>
+										<div>class : {status.class}</div>
 									</td>
 									<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
 										<div>time : {status.time}</div>
-                                                      	<div>date : {status.date}</div>
-                                                      	<div>bookingdetail : {status.bookingdetail}</div>
-                                                      	<div>bookterm : {status.bookterm}</div>
+										<div>date : {status.date}</div>
+										<div>bookingdetail : {status.bookingdetail}</div>
+										<div>bookterm : {status.bookterm}</div>
 									</td>
-                                                </td>
+								</td>
 								<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
 									{status.status === "Booking accepted" ? (
 										<div className="flex items-center gap-2 text-green-600 text-base">
@@ -147,40 +147,40 @@ const History: React.FC = () => {
 											<QrCode className="ml-8 w-8 h-8 text-blue-600" />
 											<Trash2 className="ml-2 w-8 h-8 text-red-600" />
 										</div>
-									) : 
-									status.status === "Booking canceled" ? (
-										<div className="flex items-center gap-2 text-red-500 text-base">
-											<X className="w-8 h-8" />
-											<span>{status.status}</span>
-										</div>
-									) : 
-									status.status === "Booking on wait" ?(
-										<div className="flex items-center gap-2 text-blue-600 text-base">
-											<Clock className="w-8 h-8" />
-											<span>{status.status}</span>
-										</div>
 									) :
-									status.status === "Booking rejected" ?(
-										<div className="flex items-center gap-2 text-orange-500 text-base">
-											<Shield className="w-8 h-8" />
-											<span>{status.status}</span>
-										</div>
-									) :
-									status.status === "Booking completed" ?(
-										<div className="flex items-center gap-2 text-blue-500 text-base">
-											<ShoppingBag className="w-8 h-8" />
-											<span>{status.status}</span>
-										</div>
-									) :
-									status.status === "-1 TIG" ?(
-										<div className="flex items-center gap-2 text-red-500 text-base">
-											<ThumbsDown className="w-8 h-8" />
-											<span>{status.status}</span>
-										</div>
-									) :
-									(
-										<span>{status.status}</span>
-									)}
+										status.status === "Booking canceled" ? (
+											<div className="flex items-center gap-2 text-red-500 text-base">
+												<X className="w-8 h-8" />
+												<span>{status.status}</span>
+											</div>
+										) :
+											status.status === "Booking on wait" ? (
+												<div className="flex items-center gap-2 text-blue-600 text-base">
+													<Clock className="w-8 h-8" />
+													<span>{status.status}</span>
+												</div>
+											) :
+												status.status === "Booking rejected" ? (
+													<div className="flex items-center gap-2 text-orange-500 text-base">
+														<Shield className="w-8 h-8" />
+														<span>{status.status}</span>
+													</div>
+												) :
+													status.status === "Booking completed" ? (
+														<div className="flex items-center gap-2 text-blue-500 text-base">
+															<ShoppingBag className="w-8 h-8" />
+															<span>{status.status}</span>
+														</div>
+													) :
+														status.status === "-1 TIG" ? (
+															<div className="flex items-center gap-2 text-red-500 text-base">
+																<ThumbsDown className="w-8 h-8" />
+																<span>{status.status}</span>
+															</div>
+														) :
+															(
+																<span>{status.status}</span>
+															)}
 								</td>
 							</tr>
 						))}
