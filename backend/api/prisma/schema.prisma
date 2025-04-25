@@ -1,0 +1,167 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Department {
+    DNumber   Int        @id
+    DName     String     @db.VarChar(15)
+    employees Employee[]
+}
+
+model Position {
+    PNumber   Int        @id
+    PName     String     @db.VarChar(15)
+    AccessNo  String?    @db.VarChar(15)
+    employees Employee[]
+}
+
+model RoomStatus {
+    SNumber Int    @id
+    SName   String @db.VarChar(15)
+    rooms   Room[]
+}
+
+model EmployeeStatus {
+    SNumber   Int        @id
+    SName     String     @db.VarChar(15)
+    employees Employee[]
+}
+
+model BookingStatus {
+    SNumber      Int           @id
+    SName        String        @db.VarChar(15)
+    bookingLists BookingList[]
+}
+
+model Building {
+    BNumber Int     @id
+    BName   String  @db.VarChar(15)
+    floors  Floor[]
+}
+
+model Floor {
+    FlNumber Int      @id
+    FlName   String   @db.VarChar(3)
+    BNo      Int
+    building Building @relation(fields: [BNo], references: [BNumber])
+    rooms    Room[]
+}
+
+model Room {
+    RNumber      Int           @id
+    RName        String        @db.VarChar(15)
+    Capacity     Int
+    VIP          Int
+    FlNo         Int
+    SNo          Int
+    floor        Floor         @relation(fields: [FlNo], references: [FlNumber])
+    status       RoomStatus    @relation(fields: [SNo], references: [SNumber])
+    bookingLists BookingList[]
+}
+
+model Employee {
+    ENumber     Int            @id
+    FName       String         @db.VarChar(15)
+    LName       String         @db.VarChar(15)
+    score       Int
+    Email       String         @db.VarChar(30)
+    username    String         @db.VarChar(15)
+    password    String         @db.VarChar(15)
+    DNo         Int
+    PNo         Int
+    SNo         Int
+    department  Department     @relation(fields: [DNo], references: [DNumber])
+    position    Position       @relation(fields: [PNo], references: [PNumber])
+    status      EmployeeStatus @relation(fields: [SNo], references: [SNumber])
+    bookings    Booking[]
+    lockLists   LockList[]
+    unlockLists UnlockList[]
+}
+
+model Booking {
+    BKNumber       Int             @id
+    BKDate         DateTime
+    ENo            Int
+    employee       Employee        @relation(fields: [ENo], references: [ENumber])
+    bookingLists   BookingList[]
+    accessLists    AccessList[]
+    denyBookings   DenyBooking[]
+    cancelBookings CancelBooking[]
+}
+
+model BookingList {
+    BKLNumber  Int      @id
+    BKLNo      Int
+    RNo        Int
+    Start_Date DateTime
+    Start_Time String   @db.VarChar(5)
+    End_Time   String   @db.VarChar(5)
+    details    String?  @db.VarChar(30)
+    QR         String?  @db.VarChar(8)
+    SNo        Int
+
+    booking        Booking         @relation(fields: [BKLNo], references: [BKNumber])
+    room           Room            @relation(fields: [RNo], references: [RNumber])
+    status         BookingStatus   @relation(fields: [SNo], references: [SNumber])
+    accessLists    AccessList[]
+    denyBookings   DenyBooking[]
+    cancelBookings CancelBooking[]
+}
+
+model AccessList {
+    ACNumber    Int    @id
+    BKLNo       Int
+    BKNo        Int
+    Access_Time String @db.VarChar(5)
+
+    bookingList BookingList @relation(fields: [BKLNo], references: [BKLNumber])
+    booking     Booking     @relation(fields: [BKNo], references: [BKNumber])
+}
+
+model DenyBooking {
+    DNNumber Int     @id
+    BKLNo    Int
+    BKNo     Int
+    details  String? @db.VarChar(30)
+
+    bookingList BookingList @relation(fields: [BKLNo], references: [BKLNumber])
+    booking     Booking     @relation(fields: [BKNo], references: [BKNumber])
+}
+
+model CancelBooking {
+    CCNumber Int     @id
+    BKLNo    Int
+    BKNo     Int
+    details  String? @db.VarChar(30)
+
+    bookingList BookingList @relation(fields: [BKLNo], references: [BKLNumber])
+    booking     Booking     @relation(fields: [BKNo], references: [BKNumber])
+}
+
+model LockList {
+    LKNo   Int      @id
+    ENo    Int
+    LKDate DateTime
+
+    employee Employee @relation(fields: [ENo], references: [ENumber])
+}
+
+model UnlockList {
+    ULKNo  Int      @id
+    ENo    Int
+    LKDate DateTime
+
+    employee Employee @relation(fields: [ENo], references: [ENumber])
+}
