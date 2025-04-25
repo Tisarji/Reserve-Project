@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image';
 import { useState, useEffect, useRef } from "react";
-import logo from '../../app/image/MUT_LOGO_crop.png'
+import logo from '../../app/image/MUT_LOGOBlue_crop.png'
 import NotificationPanel from '../notification/notification';
 import { Bell, CircleUserRound, LogOut } from 'lucide-react';
 
@@ -117,7 +117,7 @@ function Navbar() {
 						<Link href="/User" className="text-gray-700 hover:text-blue-500">
 							<CircleUserRound className="w-6 h-6 text-blue-500" />
 						</Link>
-						<Link href="/Login" className="text-gray-700 hover:text-blue-500">
+						<Link href="/login" className="text-gray-700 hover:text-blue-500">
 							<LogOut className="w-6 h-6 text-blue-500" />
 						</Link>
 					</div>

@@ -9,7 +9,7 @@ import NotificationPanel from "@/component/notification/notification";
 export default function Home() {
 	return (
 		<>
-			<Login />
+			{/* <Login /> */}
 			{/* <main className="p-6"> */}
 				{/* <RoomManagement /> */}
         
