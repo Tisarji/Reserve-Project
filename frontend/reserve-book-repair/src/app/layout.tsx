@@ -12,7 +12,7 @@ const layout = ({ children }: { children: ReactNode }) => {
 	return (
 		<html>
 			<body>
-				<Nav />
+				{/* <Nav /> */}
 				{children}
 			</body>
 		</html>
