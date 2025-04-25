@@ -1,119 +1,120 @@
-@import "tailwindcss";
+	@import "tailwindcss";
 
-* {
-	box-sizing: border-box;
-}
-/** Navbar */
+	* {
+		box-sizing: border-box;
+	}
+	/** Navbar */
 
-/** Homepage */
+	/** Homepage */
 
-/** Notification */
+	/** Notification */
 
-/** Login */
-.bglogin {
-	height:100%;
-	width: 100%;
-	position: absolute;
+	/** Login */
+	.bglogin {
+		background-image: url("../app/image/BGmut.png");
+/* 
+		height:100%;
+		width: 100%;
+		position: absolute;
 
-	background-image: url("../app/image/BGmut.png");
-	display: flex;
-	background-size: cover;
-	background-position: center;
-	justify-content: center;
-	align-items: center;
+		display: flex;
+		background-size: cover;
+		background-position: center;
+		justify-content: center;
+		align-items: center; */
 
-	/* border: 5px solid blue; */
-}
+		/* border: 5px solid blue; */
+	}
 
-.rowlogin {
+	/* .rowlogin {
 
-	height: 50vh;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	position: absolute;
-	/* border: 5px solid red; */
-	justify-content: center;
-	align-items: center;
-}
+		height: 50vh;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		position: absolute;
+		border: 5px solid red;
+		justify-content: center;
+		align-items: center;
+	} */
 
-.mutlogo {
-	margin: 100px 0 100px 100px;
-	height: 50vh;
-	width: 70vw;
-	position: relative;
-	/* border: 5px solid green; */
+	.mutlogo {
+		/* margin: 100px 0 100px 100px;
+		height: 50vh;
+		width: 70vw;
+		position: relative; */
+		/* border: 5px solid green; */
 
-	background-image: url("../app/image/logo-full.png");
-	background-size: cover;
-	background-position: center;
-}
+		background-image: url("../app/image/logo-full.png");
+		/* background-size: cover;
+		background-position: center; */
+	}
 
-.login-form {
-	background-color: white;
-	border-radius: 5px;
-	margin: 100px 100px 100px 0px;
-	position: relative;
-	/* border: 5px solid yellow; */
-	height: 50vh;
-	width: 30vw;
-    text-align: center; /* Optional: Centers text inside the form */
-    padding: 20px; /* Add padding for spacing */
-}
+	/* .login-form {
+		background-color: white;
+		border-radius: 5px;
+		margin: 100px 100px 100px 0px;
+		position: relative;
+		border: 5px solid yellow;
+		height: 50vh;
+		width: 30vw;
+		text-align: center;
+		padding: 20px;
+	} */
 
-.welcome-login {
-	font-size: 28px;
-	color: #27374D;
-	margin-bottom: 20px;
-}
+	/* .welcome-login {
+		font-size: 28px;
+		color: #27374D;
+		margin-bottom: 20px;
+	} */
 
-.text_info-login {
-	display: block;
-	margin-top: 1rem;
-	margin-bottom: 5px;
-	font-size: 16px;
-	color: #27374D;
-	text-align: left;
-}
+	/* .text_info-login {
+		display: block;
+		margin-top: 1rem;
+		margin-bottom: 5px;
+		font-size: 16px;
+		color: #27374D;
+		text-align: left;
+	} */
 
-.info-login {
-	font-size: 18px;
-	width: 90%;
-	padding: 10px;
-	border: 1px solid #D0D0D0;
-	border-radius: 8px;
-	margin-bottom: 8px;
-	transition: border-color 0.3s;
-}
+	/* .info-login {
+		font-size: 18px;
+		width: 90%;
+		padding: 10px;
+		border: 1px solid #D0D0D0;
+		border-radius: 8px;
+		margin-bottom: 8px;
+		transition: border-color 0.3s;
+	} */
 
-.info-login:focus {
-	outline: none;
-	border-color: #D08C51;
-}
+	/* .info-login:focus {
+		outline: none;
+		border-color: #D08C51;
+	} */
 
-.forgot-login {
-	display: block;
-	font-size: 14px;
-	color: #D08C51;
-	/* margin-top: 1rem; */
-	margin-right: 60%;
-	text-decoration: underline;
-	cursor: pointer;
-}
+	/* .forgot-login {
+		display: block;
+		font-size: 14px;
+		color: #D08C51;
+		margin-top: 1rem;
+		margin-right: 60%;
+		text-decoration: underline;
+		cursor: pointer;
+	}
 
-.signin-login {
-	font-size: 18px;
-	color: #ffffff;
-	padding: 10px;
-	margin-top: 1rem;
-	background-color: #27374D;
-	border: none;
-	border-radius: 8px;
-	width: 100%;
-	cursor: pointer;
-	transition: background-color 0.3s;
-}
+	.signin-login {
+		font-size: 18px;
+		color: #ffffff;
+		padding: 10px;
+		margin-top: 1rem;
+		background-color: #27374D;
+		border: none;
+		border-radius: 8px;
+		width: 100%;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
 
-.signin-login:hover {
-	background-color: #D08C51;
-}
+	.signin-login:hover {
+		background-color: #D08C51;
+	} */
