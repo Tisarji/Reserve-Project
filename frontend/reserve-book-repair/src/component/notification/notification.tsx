@@ -50,7 +50,7 @@ const NotificationPanel: React.FC = () => {
 	};
 
 	return (
-		<div className="relative">
+		<div className="relative h-6">
 			<button onClick={() => setShow(!show)} className="text-black">
 				<Bell className="w-6 h-6 text-blue-500" />
 			</button>
