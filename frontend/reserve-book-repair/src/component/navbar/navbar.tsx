@@ -12,25 +12,6 @@ function Navbar() {
 	const [managedrop, setmanage] = useState(false);
 	const [masterdrop, setmaster] = useState(false);
 
-	const manageRef = useRef<HTMLDivElement>(null);
-	const masterRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const handleClickOutside = (e: MouseEvent) => {
-			if (manageRef.current && !manageRef.current.contains(e.target as Node)) {
-				setmanage(false);
-			}
-			if (masterRef.current && !masterRef.current.contains(e.target as Node)) {
-				setmaster(false);
-			}
-		};
-
-		document.addEventListener("mousedown", handleClickOutside);
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		};
-	}, []);
-
 	return (
 		<nav className="bg-white shadow-md sticky top-0 z-50">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,7 +30,7 @@ function Navbar() {
 						<Link href="/history" className="text-gray-700 hover:text-blue-500">History</Link>
 
 						{/* Dropdown Management */}
-						<div ref={manageRef} className="relative">
+						<div className="relative">
 							<button
 								onClick={() => setmanage(!managedrop)}
 								className="text-gray-800 hover:text-blue-500 flex items-center"
@@ -65,7 +46,7 @@ function Navbar() {
 							)}
 						</div>
 						{/* Dropdown Master */}
-						<div ref={masterRef} className="relative">
+						<div className="relative">
 							<button
 								onClick={() => setmaster(!masterdrop)}
 								className="text-gray-800 hover:text-blue-500 flex items-center"
