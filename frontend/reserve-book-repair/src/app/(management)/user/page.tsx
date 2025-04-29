@@ -49,36 +49,36 @@ const UserManagement: React.FC = () => {
 		<>
 			<div className="min-h-screen bg-gray-50 p-8">
 				<div className="mb-6 flex justify-between items-center">
-				<div className="space-x-2">
-					<button
-						onClick={() => alert("Add Room")}
-						className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-					>
-						<FontAwesomeIcon icon={faPlus} className="mr-2" />
-						Add
-					</button>
-					<button
-						onClick={() => setMode(mode === "edit" ? null : "edit")}
-						className="border border-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-100"
-					>
-						<FontAwesomeIcon icon={faEdit} className="mr-2" />
-						{mode === "edit" ? "Cancel Edit" : "Edit"}
-					</button>
-					<button
-						onClick={() => setMode(mode === "delete" ? null : "delete")}
-						className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-					>
-						<FontAwesomeIcon icon={faTrash} className="mr-2" />
-						{mode === "delete" ? "Cancel Delete" : "Delete"}
-					</button>
-				</div>
+					<div className="space-x-2">
+						<button
+							onClick={() => alert("Add Room")}
+							className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+						>
+							<FontAwesomeIcon icon={faPlus} className="mr-2" />
+							Add
+						</button>
+						<button
+							onClick={() => setMode(mode === "edit" ? null : "edit")}
+							className="border border-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-100"
+						>
+							<FontAwesomeIcon icon={faEdit} className="mr-2" />
+							{mode === "edit" ? "Cancel Edit" : "Edit"}
+						</button>
+						<button
+							onClick={() => setMode(mode === "delete" ? null : "delete")}
+							className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+						>
+							<FontAwesomeIcon icon={faTrash} className="mr-2" />
+							{mode === "delete" ? "Cancel Delete" : "Delete"}
+						</button>
+					</div>
 					<div className="flex items-center gap-2">
 						<input
 							type="text"
 							placeholder="Search..."
 							value={searchTerm}
 							onChange={(e) => setSearchTerm(e.target.value)}
-							className="border px-3 py-2 rounded w-64"
+							className="w-64 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
 						/>
 						<FontAwesomeIcon icon={faSearch} className="text-gray-500" />
 					</div>
