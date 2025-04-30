@@ -54,7 +54,7 @@ function Navbar() {
 
 					{/* Navigation Links Main */}
 					<div className="hidden md:flex space-x-4">
-						<Link href="/booking" className="text-gray-700 hover:text-blue-500">
+						<Link href="/booking-main" className="text-gray-700 hover:text-blue-500">
 							Booking
 						</Link>
 						<Link href="/history" className="text-gray-700 hover:text-blue-500">
@@ -105,7 +105,7 @@ function Navbar() {
 							</li>
 						</ul>
 
-						<Link href="/Report" className="text-gray-700 hover:text-blue-500">Report</Link>
+						<Link href="/report" className="text-gray-700 hover:text-blue-500">Report</Link>
 					</div>
 
 					{/* Navigation Links */}
