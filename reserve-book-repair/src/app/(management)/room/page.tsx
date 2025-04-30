@@ -1,6 +1,3 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faEdit, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,64 +12,35 @@ interface Room {
 }
 
 const columns = [
-	"รหัสห้อง",
-	"ชื่อห้อง",
-	"รหัสตึก",
-	"ชั้น",
-	"สถานะ",
-	"ระดับห้อง",
-	"ความจุ"
+	"รหัสห้อง", "ชื่อห้อง", "รหัสตึก", "ชั้น", "สถานะ", "ระดับห้อง", "ความจุ"
 ];
 
-const RoomManagement: React.FC = () => {
-	const [rooms, setRooms] = useState<Room[]>([]);
+async function getRooms(): Promise<Room[]> {
+	const res = await fetch(`${process.env.BACKEND_URL}/api/rooms`, {
+		cache: "no-store",
+	});
+	if (!res.ok)
+		throw new Error("Failed to fetch rooms");
+	const data = await res.json();
 
-	const [searchTerm, setSearchTerm] = useState("");
-	const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
-	const [mode, setMode] = useState<"edit" | "delete" | null>(null);
+	return data.map((room: any) => ({
+		rnumber: room.RNumber.toString(),
+		rname: room.RName,
+		bname: room.BuildingID || "N/A",
+		flname: room.floor?.FName || "N/A",
+		sname: room.status?.SName || "N/A",
+		vip: room.VIP ? "1" : "0",
+		capacity: room.Capacity
+	}));
+}
 
-	const handleRowClick = (room: Room) => {
-		if (mode === "edit") {
-			alert(`Edit: ${room.rname}`);
-		} else if (mode === "delete") {
-			alert(`Delete: ${room.rname}`);
-		}
-	};
-
-	const filteredRooms = rooms.filter((room) =>
-		Object.values(room).some((val) =>
-			val.toString().toLowerCase().includes(searchTerm.toLowerCase())
-		)
-	);
-
-	useEffect(() => {
-		fetch("http://localhost:8080/api/rooms")
-			.then(response => {
-				if (!response.ok) throw new Error("Network response was not ok");
-				return response.json();
-			})
-			.then(data => {
-				const parsedRooms = data.map((room: any) => ({
-					rnumber: room.RNumber.toString(),
-					rname: room.RName,
-					bname: room.BuildingID || "N/A",
-					flname: room.floor?.FName || "N/A",
-					sname: room.status?.SName || "N/A",
-					vip: room.VIP ? "1" : "0",
-					capacity: room.Capacity
-				}));
-				setRooms(parsedRooms);
-			})
-			.catch(error => {
-				console.error("Fetch rooms error:", error);
-			});
-	}, []);
+export default async function RoomManagementPage() {
+	const rooms = await getRooms();
 
 	return (
 		<div className="min-h-screen bg-gray-50 p-8">
 			<div className="mb-6 flex justify-between items-center">
 				<div className="space-x-2">
-
 					<button
 						onClick={() => alert("Add Room")}
 						className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
@@ -81,28 +49,25 @@ const RoomManagement: React.FC = () => {
 						Add
 					</button>
 					<button
-						onClick={() => setMode(mode === "edit" ? null : "edit")}
+						onClick={() => alert("Edit Mode")}
 						className="border border-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-100"
 					>
 						<FontAwesomeIcon icon={faEdit} className="mr-2" />
-						{mode === "edit" ? "Cancel Edit" : "Edit"}
+						Edit
 					</button>
-
 					<button
-						onClick={() => setMode(mode === "delete" ? null : "delete")}
+						onClick={() => alert("Delete Mode")}
 						className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
 					>
 						<FontAwesomeIcon icon={faTrash} className="mr-2" />
-						{mode === "delete" ? "Cancel Delete" : "Delete"}
+						Delete
 					</button>
-
 				</div>
+
 				<div className="flex items-center gap-2">
 					<input
 						type="text"
-						placeholder="..."
-						value={searchTerm}
-						onChange={(e) => setSearchTerm(e.target.value)}
+						placeholder="ค้นหา..."
 						className="w-64 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
 					/>
 					<FontAwesomeIcon icon={faSearch} className="text-gray-500" />
@@ -121,12 +86,8 @@ const RoomManagement: React.FC = () => {
 						</tr>
 					</thead>
 					<tbody className="bg-white divide-y divide-gray-200">
-						{filteredRooms.map((room) => (
-							<tr
-								key={room.rnumber}
-								className={`hover:bg-gray-100 transition ${mode ? 'cursor-pointer' : ''}`}
-								onClick={() => handleRowClick(room)}
-							>
+						{rooms.map((room) => (
+							<tr key={room.rnumber} className="hover:bg-gray-100 transition">
 								<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{room.rnumber}</td>
 								<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{room.rname}</td>
 								<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{room.bname}</td>
@@ -141,6 +102,4 @@ const RoomManagement: React.FC = () => {
 			</div>
 		</div>
 	);
-};
-
-export default RoomManagement;
+}
