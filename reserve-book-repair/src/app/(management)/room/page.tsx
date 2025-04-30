@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faEdit, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -25,15 +25,7 @@ const columns = [
 ];
 
 const RoomManagement: React.FC = () => {
-	const [rooms, setRooms] = useState<Room[]>([{
-		rnumber: "R101",
-		rname: "ห้องประชุมใหญ่",
-		bname: "B1",
-		flname: "1",
-		sname: "ว่าง",
-		vip: "0",
-		capacity: 20
-	}]);
+	const [rooms, setRooms] = useState<Room[]>([]);
 
 	const [searchTerm, setSearchTerm] = useState("");
 	const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
@@ -52,6 +44,29 @@ const RoomManagement: React.FC = () => {
 			val.toString().toLowerCase().includes(searchTerm.toLowerCase())
 		)
 	);
+
+	useEffect(() => {
+		fetch("http://localhost:8080/api/rooms")
+			.then(response => {
+				if (!response.ok) throw new Error("Network response was not ok");
+				return response.json();
+			})
+			.then(data => {
+				const parsedRooms = data.map((room: any) => ({
+					rnumber: room.RNumber.toString(),
+					rname: room.RName,
+					bname: room.BuildingID || "N/A",
+					flname: room.floor?.FName || "N/A",
+					sname: room.status?.SName || "N/A",
+					vip: room.VIP ? "1" : "0",
+					capacity: room.Capacity
+				}));
+				setRooms(parsedRooms);
+			})
+			.catch(error => {
+				console.error("Fetch rooms error:", error);
+			});
+	}, []);
 
 	return (
 		<div className="min-h-screen bg-gray-50 p-8">
