@@ -1,4 +1,4 @@
-import { getRooms } from "@/lib/getRooms";
+import { getRooms } from "@/lib/room/getRooms";
 import RoomManagementClient from "./RoomManagementClient";
 
 export default async function RoomManagementPage() {
