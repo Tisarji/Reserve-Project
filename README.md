@@ -1,6 +1,6 @@
 ## 📦 Installation Guide
 
-### 📖 Frontend – React
+### 📖 Install Project
 
 1. **Install dependencies:**
 
@@ -11,13 +11,5 @@ npm install
 2. **Run the development server:**
 
 ```bash
-npm start
-```
-
-### 🎒 Backend – Go
-
-1. **Run the server:**
-
-```bash
-go run srcs/main.go
+npm run dev
 ```
