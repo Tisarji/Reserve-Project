@@ -1,12 +1,22 @@
 import prisma from '../../prisma/client';
 
 export const getRooms = async () => {
-	return prisma.room.findMany({
+	const rooms = await prisma.room.findMany({
 		include: {
 			floor: true,
 			status: true,
 		},
 	});
+
+	return rooms.map(room => ({
+		rnumber: room.RNumber.toString(),
+		rname: room.RName,
+		bname: room.SNo,
+		flname: room.floor,
+		sname: room.status?.SName || "N/A",
+		vip: room.VIP ? "1" : "0",
+		capacity: room.Capacity,
+	}));
 };
 
 export const getRoomById = async (id: number) => {

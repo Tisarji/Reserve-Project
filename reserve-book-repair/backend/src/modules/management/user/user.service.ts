@@ -1,14 +1,24 @@
 import prisma from '../../prisma/client';
 
 export const getUsers = async () => {
-	return prisma.employee.findMany({
+	const employee = await prisma.employee.findMany({
 		include: {
 			department: true,
 			position: true,
 			status: true,
 		},
 	});
-}
+
+	return employee.map(emp => ({
+		enumber: emp.ENumber ? String(emp.ENumber) : 'N/A',
+		fname: emp.FName,
+		lname: emp.LName,
+		dname: emp.department?.DName || 'N/A',
+		pname: emp.position?.PName || 'N/A',
+		sname: emp.status?.SName || 'N/A',
+		score: emp.score,
+	}));
+};
 
 export const getUserById = async (id
 	: number) => {
@@ -38,4 +48,3 @@ export const deleteUser = async (id: number) => {
 		where: { ENumber: id },
 	});
 }
-

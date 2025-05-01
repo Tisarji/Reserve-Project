@@ -6,13 +6,14 @@ export async function getRooms() {
 
 	const data = await res.json();
 
+	console.log("Fetched rooms:", data);
 	return data.map((room: any) => ({
-		rnumber: room.RNumber.toString(),
-		rname: room.RName,
+		rnumber: room.RNumber ? String(room.RNumber) : "N/A",
+		rname: room.RName ?? "N/A",
 		bname: room.BuildingID || "N/A",
 		flname: room.floor?.FName || "N/A",
 		sname: room.status?.SName || "N/A",
 		vip: room.VIP ? "1" : "0",
-		capacity: room.Capacity
+		capacity: room.Capacity ?? 0
 	}));
 }
