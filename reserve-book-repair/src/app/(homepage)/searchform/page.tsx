@@ -170,7 +170,7 @@ const SearchForm = () => {
 							<div className="pt-4">
 								<Button
 									type="submit"
-									className="w-full py-6 bg-gray-900 hover:bg-indigo-700 text-white text-lg font-semibold rounded-lg shadow-md transition duration-300 ease-in-out flex items-center justify-center gap-2"
+									className="w-full py-6 bg-gray-900 hover:bg-indigo-700 text-white text-lg font-semibold rounded-lg shadow-md transition duration-300 ease-in-out flex items-center justify-center gap-2 cursor-pointer"
 								>
 									<Search className="h-5 w-5" />
 									Find Available Rooms
