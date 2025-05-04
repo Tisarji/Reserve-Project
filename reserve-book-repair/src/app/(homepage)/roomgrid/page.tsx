@@ -98,7 +98,6 @@ const RoomGrid = () => {
 		});
 	};
 
-	// Apply filters to rooms
 	const filteredRooms = mockRooms.filter(room => {
 		if (filters.available && !room.available) return false;
 		if (filters.vip && room.class !== "VIP") return false;
@@ -107,7 +106,7 @@ const RoomGrid = () => {
 	});
 
 	return (
-		<div className="container mx-auto py-16 px-4 bg-gray-50">
+		<div className="container mx-auto py-16 px-4">
 			<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
 				<div className="flex items-center gap-3 mb-4 sm:mb-0">
 					<DoorOpen className="h-6 w-6 text-blue-600" />
