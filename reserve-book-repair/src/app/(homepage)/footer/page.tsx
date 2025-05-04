@@ -62,7 +62,6 @@ const Footer = () => {
 						</div>
 					</div>
 
-					{/* Quick Links Columns */}
 					{[
 						{
 							title: "เกี่ยวกับมหาวิทยาลัย",
