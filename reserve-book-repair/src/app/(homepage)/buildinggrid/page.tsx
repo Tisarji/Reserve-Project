@@ -6,28 +6,28 @@ import { Building, MapPin, Users, Clock } from "lucide-react";
 
 const mockBuildings = [
 	{
-		bname: "A",
+		bname: "MII",
 		description: "Engineering Faculty",
 		floors: 5,
 		roomCount: 24,
 		openHours: "7:00 - 20:00"
 	},
 	{
-		bname: "B",
+		bname: "MIIX",
 		description: "Science Department",
 		floors: 4,
 		roomCount: 18,
 		openHours: "7:00 - 19:00"
 	},
 	{
-		bname: "C",
+		bname: "D",
 		description: "Business School",
 		floors: 6,
 		roomCount: 30,
 		openHours: "8:00 - 21:00"
 	},
 	{
-		bname: "D",
+		bname: "F",
 		description: "Library & Study Areas",
 		floors: 3,
 		roomCount: 12,
