@@ -158,6 +158,11 @@ const RoomStatusPage = () => {
 						</tbody>
 					</table>
 				</div>
+				{filteredStatusList.length > 0 && (
+						<div className="mt-4 text-sm text-gray-500 px-2">
+							แสดง {filteredStatusList.length} จาก {statusList.length} รายการ
+						</div>
+					)}
 			</div>
 
 			{/* Modal */}

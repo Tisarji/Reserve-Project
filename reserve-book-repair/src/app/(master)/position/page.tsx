@@ -161,6 +161,11 @@ const Position = () => {
 						</tbody>
 					</table>
 				</div>
+				{filteredPositions.length > 0 && (
+						<div className="mt-4 text-sm text-gray-500 px-2">
+							แสดง {filteredPositions.length} จาก {positions.length} รายการ
+						</div>
+					)}
 			</div>
 
 			{/* Modal Add/Edit */}
