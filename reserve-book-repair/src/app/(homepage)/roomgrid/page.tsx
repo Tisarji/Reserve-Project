@@ -109,7 +109,7 @@ const RoomGrid = () => {
 		<div className="container mx-auto py-16 px-4">
 			<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
 				<div className="flex items-center gap-3 mb-4 sm:mb-0">
-					<DoorOpen className="h-6 w-6 text-blue-600" />
+					<DoorOpen className="h-6 w-6 text-[#2a80fe]" />
 					<h2 className="text-2xl font-bold text-gray-800">Available Rooms</h2>
 				</div>
 
@@ -117,7 +117,7 @@ const RoomGrid = () => {
 					<Button
 						onClick={toggleFilter}
 						variant="outline"
-						className="flex items-center gap-2 border-blue-200 text-blue-700"
+						className="flex items-center gap-2 border-[#b3d4ff] text-[#2a80fe]"
 					>
 						<Filter className="h-4 w-4" />
 						Filters
@@ -135,7 +135,7 @@ const RoomGrid = () => {
 										type="checkbox"
 										checked={filters.available}
 										onChange={() => handleFilterChange('available')}
-										className="rounded text-blue-600 focus:ring-blue-500"
+										className="rounded text-[#2a80fe] focus:ring-[#2a80fe]"
 									/>
 									<span>Available Now</span>
 								</label>
@@ -145,7 +145,7 @@ const RoomGrid = () => {
 										type="checkbox"
 										checked={filters.vip}
 										onChange={() => handleFilterChange('vip')}
-										className="rounded text-blue-600 focus:ring-blue-500"
+										className="rounded text-[#2a80fe] focus:ring-[#2a80fe]"
 									/>
 									<span>VIP Rooms</span>
 								</label>
@@ -155,7 +155,7 @@ const RoomGrid = () => {
 										type="checkbox"
 										checked={filters.normal}
 										onChange={() => handleFilterChange('normal')}
-										className="rounded text-blue-600 focus:ring-blue-500"
+										className="rounded text-[#2a80fe] focus:ring-[#2a80fe]"
 									/>
 									<span>Normal Rooms</span>
 								</label>
@@ -182,16 +182,16 @@ const RoomGrid = () => {
 								className="w-full h-48 object-cover"
 							/>
 
-							<div className="absolute top-0 left-0 bg-blue-600 text-white py-1 px-3 rounded-br-lg">
+							<div className="absolute top-0 left-0 bg-[#2a80fe] text-white py-1 px-3 rounded-br-lg">
 								{room.bname}-{room.rname}
 							</div>
 
-							<div className={`absolute top-0 right-0 ${room.class === "VIP" ? "bg-yellow-500" : "bg-blue-500"
+							<div className={`absolute top-0 right-0 ${room.class === "VIP" ? "bg-yellow-500" : "bg-[#2a80fe]"
 								} text-white py-1 px-3 rounded-bl-lg`}>
 								{room.class}
 							</div>
 
-							<div className={`absolute bottom-0 right-0 ${room.available ? "bg-green-500" : "bg-red-500"
+							<div className={`absolute bottom-0 right-0 ${room.available ? "bg-green-600" : "bg-red-700"
 								} text-white py-1 px-3 rounded-tl-lg text-sm font-medium`}>
 								{room.available ? "Available" : "Occupied"}
 							</div>
@@ -218,7 +218,7 @@ const RoomGrid = () => {
 
 							<button
 								className={`w-full py-2 rounded-lg transition duration-300 ${room.available
-										? "bg-blue-600 hover:bg-blue-700 text-white"
+										? "bg-[#2a80fe] hover:bg-[#1e6bd1] text-white"
 										: "bg-gray-200 text-gray-500 cursor-not-allowed"
 									}`}
 								disabled={!room.available}
@@ -235,7 +235,7 @@ const RoomGrid = () => {
 					<p className="text-gray-500 text-lg">No rooms match your filter criteria</p>
 					<button
 						onClick={() => setFilters({ available: false, vip: false, normal: false })}
-						className="mt-4 text-blue-600 hover:text-blue-800"
+						className="mt-4 text-[#2a80fe] hover:text-[#1e6bd1]"
 					>
 						Clear all filters
 					</button>

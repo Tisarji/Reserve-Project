@@ -159,6 +159,11 @@ const Status = () => {
 						</tbody>
 					</table>
 				</div>
+				{filteredStatuses.length > 0 && (
+						<div className="mt-4 text-sm text-gray-500 px-2">
+							แสดง {filteredStatuses.length} จาก {statuses.length} รายการ
+						</div>
+					)}
 			</div>
 
 			{/* Modal Add/Edit */}

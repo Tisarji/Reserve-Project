@@ -1,36 +1,28 @@
 "use client";
 
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faEdit, faTrash, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Plus, Edit, Trash2, Search, X, AlertCircle } from "lucide-react";
 
-interface Room {
-	rnumber: number;
+type Room = {
+	rnumber: string;
 	rname: string;
-	bname: number;
-	flname: { FlNumber: number; FlName: string; BNo: number };
+	bname: string;
+	flname: { FlName: string };
 	sname: string;
 	vip: string;
 	capacity: number;
-}
+};
 
-interface Props {
+type Props = {
 	rooms: Room[];
-}
-
-const columns = [
-	"รหัสห้อง", "ชื่อห้อง", "รหัสตึก", "ชั้น", "สถานะ", "ระดับห้อง", "ความจุ"
-];
+};
 
 export default function RoomManagementClient({ rooms }: Props) {
 	const [searchTerm, setSearchTerm] = useState("");
-	const [mode, setMode] = useState<"none" | "add" | "edit" | "delete">("none");
 
 	const filteredRooms = rooms.filter((room) =>
-		Object.entries(room).some(([key, val]) => {
-			if (val === null || val === undefined) return false;
+		Object.entries(room).some(([_, val]) => {
+			if (val == null) return false;
 			if (typeof val === "object") {
 				return Object.values(val).some(v =>
 					String(v).toLowerCase().includes(searchTerm.toLowerCase())
@@ -40,78 +32,118 @@ export default function RoomManagementClient({ rooms }: Props) {
 		})
 	);
 
-	const handleAdd = () => {
-		setMode("add");
-		console.log("Entering Add Mode...");
-		// TODO: Open modal or show form
-	};
-
-	const handleEdit = () => {
-		setMode("edit");
-		console.log("Entering Edit Mode...");
-		// TODO: Toggle edit UI
-	};
-
-	const handleDelete = () => {
-		setMode("delete");
-		console.log("Entering Delete Mode...");
-		// TODO: Allow row selection and deletion
-	};
-
 	return (
-		<div className="min-h-screen bg-gray-50 p-8">
-			<div className="mb-6 flex justify-between items-center flex-wrap gap-4">
-				<div className="space-x-2">
-					<Button onClick={handleAdd}>
-						<FontAwesomeIcon icon={faPlus} className="mr-2" />
-						เพิ่มห้อง
-					</Button>
-					<Button variant="outline" onClick={handleEdit}>
-						<FontAwesomeIcon icon={faEdit} className="mr-2" />
-						แก้ไข
-					</Button>
-					<Button variant="destructive" onClick={handleDelete}>
-						<FontAwesomeIcon icon={faTrash} className="mr-2" />
-						ลบ
-					</Button>
-				</div>
-				<div className="flex items-center gap-2">
-					<Input
-						type="text"
-						placeholder="ค้นหา..."
-						value={searchTerm}
-						onChange={(e) => setSearchTerm(e.target.value)}
-						className="w-64"
-					/>
-					<FontAwesomeIcon icon={faSearch} className="text-gray-500" />
-				</div>
-			</div>
+		<div className="min-h-screen bg-gray-50 p-6">
+			<div className="max-w-6xl mx-auto">
+				<div className="bg-white rounded-xl shadow-md p-6 mb-6">
+					<h1 className="text-2xl font-bold text-gray-800 mb-6">จัดการห้อง</h1>
 
-			<div className="overflow-auto rounded-lg shadow">
-				<table className="min-w-full divide-y divide-gray-200">
-					<thead className="bg-gray-100">
-						<tr>
-							{columns.map((col, idx) => (
-								<th key={idx} className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-									{col}
-								</th>
-							))}
-						</tr>
-					</thead>
-					<tbody className="bg-white divide-y divide-gray-200">
-						{filteredRooms.map((room) => (
-							<tr key={room.rnumber} className="hover:bg-gray-100 transition">
-								<td className="px-6 py-4 text-sm text-gray-900">{room.rnumber}</td>
-								<td className="px-6 py-4 text-sm text-gray-900">{room.rname}</td>
-								<td className="px-6 py-4 text-sm text-gray-900">{room.bname}</td>
-								<td className="px-6 py-4 text-sm text-gray-900">{room.flname.FlName}</td>
-								<td className="px-6 py-4 text-sm text-gray-900">{room.sname}</td>
-								<td className="px-6 py-4 text-sm text-gray-900">{room.vip === "1" ? "VIP" : "Normal"}</td>
-								<td className="px-6 py-4 text-sm text-gray-900">{room.capacity}</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
+					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+						<div className="flex flex-wrap gap-2">
+							<button
+								onClick={() => alert("Add Room")}
+								className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition flex items-center gap-2 text-sm font-medium"
+							>
+								<Plus size={18} />
+								เพิ่มห้อง
+							</button>
+						</div>
+
+						<div className="relative w-full md:w-auto">
+							<div className="relative">
+								<input
+									type="text"
+									placeholder="ค้นหา..."
+									value={searchTerm}
+									onChange={(e) => setSearchTerm(e.target.value)}
+									className="w-full md:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+								/>
+								<Search size={18} className="absolute left-3 top-2.5 text-gray-400" />
+								{searchTerm && (
+									<button
+										onClick={() => setSearchTerm("")}
+										className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+									>
+										<X size={16} />
+									</button>
+								)}
+							</div>
+						</div>
+					</div>
+
+					<div className="overflow-hidden rounded-lg border border-gray-200">
+						<table className="min-w-full divide-y divide-gray-200">
+							<thead className="bg-gray-50">
+								<tr>
+									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">รหัสห้อง</th>
+									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ชื่อห้อง</th>
+									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">รหัสตึก</th>
+									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ชั้น</th>
+									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">สถานะ</th>
+									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ระดับห้อง</th>
+									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ความจุ</th>
+									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">จัดการ</th>
+								</tr>
+							</thead>
+							<tbody className="bg-white divide-y divide-gray-200">
+								{filteredRooms.length > 0 ? (
+									filteredRooms.map((room) => (
+										<tr key={room.rnumber} className="hover:bg-gray-50 transition">
+											<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{room.rnumber}</td>
+											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{room.rname}</td>
+											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{room.bname}</td>
+											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{room.flname.FlName}</td>
+											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{room.sname}</td>
+											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{room.vip === "1" ? "VIP" : "ปกติ"}</td>
+											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{room.capacity}</td>
+											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+												<div className="flex gap-2">
+													<button
+														onClick={() => alert(`Edit ${room.rnumber}`)}
+														className="text-blue-600 hover:text-blue-800"
+													>
+														<Edit size={18} />
+													</button>
+													<button
+														onClick={() =>
+															confirm(`ยืนยันการลบห้อง ${room.rnumber}?`) && alert(`Delete ${room.rnumber}`)
+														}
+														className="text-red-600 hover:text-red-800"
+													>
+														<Trash2 size={18} />
+													</button>
+												</div>
+											</td>
+										</tr>
+									))
+								) : (
+									<tr>
+										<td colSpan={8} className="px-6 py-8 text-center text-sm text-gray-500">
+											<div className="flex flex-col items-center justify-center gap-2">
+												<AlertCircle size={24} className="text-gray-400" />
+												<p>ไม่พบข้อมูลห้อง</p>
+												{searchTerm && (
+													<button
+														onClick={() => setSearchTerm("")}
+														className="text-blue-600 hover:underline text-sm mt-1"
+													>
+														ล้างการค้นหา
+													</button>
+												)}
+											</div>
+										</td>
+									</tr>
+								)}
+							</tbody>
+						</table>
+					</div>
+
+					{filteredRooms.length > 0 && (
+						<div className="mt-4 text-sm text-gray-500 px-2">
+							แสดง {filteredRooms.length} จาก {rooms.length} รายการ
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

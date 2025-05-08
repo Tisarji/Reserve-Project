@@ -39,7 +39,7 @@ const BuildingGrid = () => {
 	return (
 		<div className="container mx-auto py-16 px-4">
 			<div className="flex items-center gap-3 mb-8">
-				<Building className="h-6 w-6 text-blue-600" />
+				<Building className="h-6 w-6" style={{ color: '#2a80fe' }} />
 				<h2 className="text-2xl font-bold text-gray-800">Campus Buildings</h2>
 			</div>
 
@@ -58,7 +58,7 @@ const BuildingGrid = () => {
 								height={400}
 								className="w-full h-48 object-cover transition duration-300 group-hover:scale-105"
 							/>
-							<div className="absolute top-0 right-0 bg-blue-600 text-white font-bold text-xl py-2 px-4 rounded-bl-lg">
+							<div className="absolute top-0 right-0 font-bold text-xl py-2 px-4 rounded-bl-lg text-white" style={{ backgroundColor: '#2a80fe' }}>
 								{building.bname}
 							</div>
 						</div>
@@ -68,22 +68,31 @@ const BuildingGrid = () => {
 
 							<div className="space-y-2 text-sm text-gray-600">
 								<div className="flex items-center gap-2">
-									<MapPin className="h-4 w-4 text-blue-500" />
+									<MapPin className="h-4 w-4" style={{ color: '#2a80fe' }} />
 									<span>{building.floors} Floors</span>
 								</div>
 
 								<div className="flex items-center gap-2">
-									<Users className="h-4 w-4 text-blue-500" />
+									<Users className="h-4 w-4" style={{ color: '#2a80fe' }} />
 									<span>{building.roomCount} Rooms Available</span>
 								</div>
 
 								<div className="flex items-center gap-2">
-									<Clock className="h-4 w-4 text-blue-500" />
+									<Clock className="h-4 w-4" style={{ color: '#2a80fe' }} />
 									<span>{building.openHours}</span>
 								</div>
 							</div>
 
-							<button className="w-full mt-4 bg-blue-50 hover:bg-blue-100 text-blue-600 font-medium py-2 rounded-lg transition duration-300">
+							<button
+								className="w-full mt-4 font-medium py-2 rounded-lg transition duration-300"
+								style={{ backgroundColor: '#e5f0ff', color: '#2a80fe' }}
+								onMouseOver={(e) => {
+									e.currentTarget.style.backgroundColor = '#d3e5ff';
+								}}
+								onMouseOut={(e) => {
+									e.currentTarget.style.backgroundColor = '#e5f0ff';
+								}}
+							>
 								View Rooms
 							</button>
 						</div>
